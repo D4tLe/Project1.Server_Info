@@ -20,7 +20,7 @@ import javafx.stage.*;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Service.fxml"));
         //Group root = new Group();
         Scene scene = new Scene(root);
         stage.setTitle("Server Management");
