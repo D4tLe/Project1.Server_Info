@@ -24,6 +24,5 @@ public class Processors {
         System.out.println("CPU package: " + processor.getPhysicalPackageCount());
         System.out.println("Logical CPU: " + processor.getLogicalProcessorCount());
         System.out.println("Physical CPU cores: " + processor.getPhysicalProcessorCount());
-
     }
 }

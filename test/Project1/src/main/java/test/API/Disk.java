@@ -1,4 +1,4 @@
-package test;
+package test.API;
 
 import java.util.List;
 
