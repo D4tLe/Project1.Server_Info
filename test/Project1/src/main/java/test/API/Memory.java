@@ -17,7 +17,7 @@ public class Memory{
 
         System.out.println(CURRENT_PLATFORM.name() + '\n');
 
-        System.out.println("Memory: " + (memory.getTotal() / (1024*1024)) + " MB");
+        //System.out.println("Memory: " + (memory.getTotal() / (1024*1024)) + " MB");
         System.out.println(memory.toString());
         long swapTotal = memory.getVirtualMemory().getSwapTotal();
         long swapUsed = memory.getVirtualMemory().getSwapUsed();
