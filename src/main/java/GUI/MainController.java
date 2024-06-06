@@ -1,27 +1,13 @@
 package GUI;
 
 import GUI.Tab.CPUTab;
-import GUI.CPU_INFO;
-import GUI.CPU_INFO;
-import GUI.DISK_INFO;
-import GUI.DISK_INFO;
 import GUI.Tab.DiskTab;
 import GUI.Tab.MemoryTab;
-import GUI.NETWORK_INFO;
 import GUI.Tab.NetworkTab;
-import GUI.MEMORY_INFO;
-import GUI.MEMORY_INFO;
-import GUI.NETWORK_INFO;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.VBox;
 import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.NetworkIF;

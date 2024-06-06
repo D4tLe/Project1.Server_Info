@@ -1,10 +1,6 @@
 package GUI.Pane;
 
 import GUI.DISK_INFO;
-import java.util.ArrayList;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart.Data;

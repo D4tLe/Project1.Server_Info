@@ -1,9 +1,5 @@
 package GUI;
 
-import oshi.SystemInfo;
-import oshi.software.os.OSProcess.*;
-import oshi.software.os.OperatingSystem;
-
 public class Service {
     private String Name, Status;
     private int PID;

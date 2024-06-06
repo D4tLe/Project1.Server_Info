@@ -1,12 +1,6 @@
 package GUI;
 
-import oshi.SystemInfo;
 import oshi.software.os.OSProcess.*;
-import oshi.software.os.OperatingSystem;
-/**
- *
- * @author leunaut
- */
 public class Processing {
     String Name;
     State Status;

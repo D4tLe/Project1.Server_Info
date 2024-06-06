@@ -1,16 +1,11 @@
 package GUI.Pane;
 
 import GUI.NETWORK_INFO;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.NumberAxis.DefaultFormatter;
-import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
-import javafx.util.Duration;
-import oshi.hardware.NetworkIF;
 
 public class NetworkRealTimeChartPane extends RealTimeChartPane {
 

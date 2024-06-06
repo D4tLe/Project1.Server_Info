@@ -1,7 +1,6 @@
 package GUI.Pane;
 
 import GUI.MEMORY_INFO;
-import GUI.Pane.RealTimeChartPane;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;

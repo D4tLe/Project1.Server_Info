@@ -1,10 +1,6 @@
 package GUI.Pane;
 
-
-import javafx.geometry.Pos;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class RealTimeChartPane extends Pane {
 
