@@ -5,8 +5,8 @@ public class Processing {
     String Name;
     State Status;
     int PID, Architect;
-    String Memory;
-    public Processing(String Name, int PID, State Status, String Memory, int Architect) {
+    Double Memory;
+    public Processing(String Name, int PID, State Status, Double Memory, int Architect) {
         this.Name = Name;
         this.PID = PID;
         this.Status = Status;
@@ -46,11 +46,11 @@ public class Processing {
         this.Architect = Architect;
     }
 
-    public String getMemory() {
+    public Double getMemory() {
         return Memory;
     }
 
-    public void setMemory(String Memory) {
+    public void setMemory(Double Memory) {
         this.Memory = Memory;
     }
     

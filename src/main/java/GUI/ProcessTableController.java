@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import javax.swing.SortOrder;
 import oshi.software.os.OSProcess.*;
 
 public class ProcessTableController implements Initializable {
@@ -23,7 +24,7 @@ public class ProcessTableController implements Initializable {
     private TableColumn<Processing, State> Proc_Table_Status;
 
     @FXML
-    private TableColumn<Processing, String> Proc_Table_Memory;
+    private TableColumn<Processing, Double> Proc_Table_Memory;
 
     @FXML
     private TableView<Processing> Table_View;
@@ -42,18 +43,19 @@ public class ProcessTableController implements Initializable {
        Proc_Table_Name.setCellValueFactory(new PropertyValueFactory <Processing, String>("Name"));
        Proc_Table_Status.setCellValueFactory(new PropertyValueFactory <Processing, State>("Status"));
        Proc_Table_PID.setCellValueFactory(new PropertyValueFactory <Processing, Integer>("PID"));
-       Proc_Table_Memory.setCellValueFactory(new PropertyValueFactory <Processing, String>("Memory"));
+       Proc_Table_Memory.setCellValueFactory(new PropertyValueFactory <Processing, Double>("Memory"));
        Proc_Table_Architect.setCellValueFactory(new PropertyValueFactory <Processing, Integer>("Architect"));
-
+       
        Table_View.setItems(list);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event -> {
             UpdateTable();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        
     }
 }

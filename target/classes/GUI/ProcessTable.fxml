@@ -8,7 +8,7 @@
       <TableColumn fx:id="Proc_Table_Name" prefWidth="-1.0" text="Name" />
       <TableColumn fx:id="Proc_Table_PID" prefWidth="-1.0" text="PID" />
       <TableColumn fx:id="Proc_Table_Status" prefWidth="-1.0" text="Status" />
-      <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" text="Memory" />
+      <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" text=" Memory (MB)" />
       <TableColumn fx:id="Proc_Table_Architect" prefWidth="-1.0" text="Architect" />
    </columns>
    <columnResizePolicy>

@@ -22,7 +22,7 @@ public class MainController {
     @FXML
     private TabPane performanceTabPane;
     
-    @FXML
+    /*@FXML
     public void initialize() {
         CPU_INFO CPU = new CPU_INFO();
         
@@ -85,5 +85,5 @@ public class MainController {
         OperatingSystem os = si.getOperatingSystem();
         List<OSService> osServices = os.getServices();
         System.out.println(osServices.size());
-    }
+    }*/
 }
