@@ -6,38 +6,51 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1006.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainController">
-  <tabs>
-    <Tab fx:id="procTab" closable="false" text="Process">
-         <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <bottom>
-                  <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <buttons>
-                      <Button fx:id="endTaskButton" mnemonicParsing="false" text="End Task" />
-                    </buttons>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets right="40.0" />
-                     </padding>
-                  </ButtonBar>
-               </bottom>
-               <center>
-                  <fx:include source="ProcessTable.fxml" />
-               </center></BorderPane>
-         </content>
-    </Tab>
-      <Tab fx:id="performanceTab" closable="false" text="Performance">
-         <content>
-            <TabPane fx:id="performanceTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
-         </content>
-      </Tab>
-    <Tab fx:id="appHistoryTab" closable="false" text="App History" />
-      <Tab fx:id="startupAppTab" closable="false" text="Startup Apps" />
-      <Tab fx:id="usersTab" closable="false" text="Users" />
-      <Tab fx:id="servicesTab" closable="false" text="Services"><fx:include source="Service.fxml" /></Tab>
-  </tabs>
-</TabPane>
+
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="807.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1152.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="procTab" closable="false" text="Process">
+               <content>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                     <bottom>
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <buttons>
+                            <Button fx:id="endTaskButton" mnemonicParsing="false" text="End Task" />
+                          </buttons>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets right="40.0" />
+                           </padding>
+                        </ButtonBar>
+                     </bottom>
+                     <center>
+                        <fx:include source="ProcessTable.fxml" />
+                     </center>
+                  </BorderPane>
+               </content>
+          </Tab>
+          <Tab fx:id="performanceTab" closable="false" text="Performance">
+              <content>
+                  <fx:include source="PerformanceTab.fxml" />
+               </content>
+          </Tab>
+            
+            
+            <Tab fx:id="startupAppTab" closable="false" text="Startup Apps">
+               <content>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab fx:id="servicesTab" closable="false" text="Services">
+               <fx:include source="Service.fxml" />
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</StackPane>

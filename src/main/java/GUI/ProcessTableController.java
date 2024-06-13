@@ -1,5 +1,8 @@
 package GUI;
 
+import INFO.ProcessInfor;
+import INFO.Processing;
+import INFO.Processing;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;

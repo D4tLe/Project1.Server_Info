@@ -1,5 +1,7 @@
 package GUI;
 
+import INFO.Service;
+import INFO.ServiceInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.*;
