@@ -39,11 +39,25 @@ import oshi.util.platform.windows.WmiUtil;
 import oshi.util.tuples.Triplet;
 
 public class StartUp {
-    private String Name, Des, Pub;
-    public StartUp(String Name, String Des, String Pub) {
+    private String Name, Des, Pub, Command;
+    public StartUp(String Name, String Des, String Pub, String Command) {
         this.Name = Name;
         this.Des = Des;
         this.Pub = Pub;
+        this.Command = Command;
+    }
+    
+    public StartUp(String Name, String Command) {
+        this.Name = Name;
+        this.Command = Command;
+    }
+    
+    public String getCommand() {
+        return Command;
+    }
+
+    public void setCommand(String Command) {
+        this.Command = Command;
     }
 
     public String getName() {

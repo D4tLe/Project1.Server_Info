@@ -26,6 +26,9 @@ public class StartUpController implements Initializable {
     private TableColumn<StartUp, String> StartUp_Name;
     
     @FXML
+    private TableColumn<StartUp, String> StartUp_Cmd;
+    
+    @FXML
     private TableView <StartUp> StartUp_Table_View;
     
     @Override
@@ -35,6 +38,7 @@ public class StartUpController implements Initializable {
         StartUp_Name.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Name"));
         StartUp_Des.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Des"));
         StartUp_Pub.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Pub"));
+        StartUp_Cmd.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Command"));
         
         StartUp_Table_View.setItems(list);
     }

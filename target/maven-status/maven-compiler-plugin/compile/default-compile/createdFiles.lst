@@ -1,6 +1,9 @@
 GUI/DiskTabController$1.class
+GUI/Users.class
 INFO/ProcessInfor.class
 GUI/MemoryTabController.class
+GUI/User_Controller.class
+GUI/Users_Info.class
 GUI/DiskTabController.class
 INFO/MEMORY_INFO.class
 GUI/MemoryTabController$2.class
