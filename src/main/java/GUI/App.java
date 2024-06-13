@@ -10,7 +10,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
         Parent root = loader.load();
 
@@ -18,7 +17,6 @@ public class App extends Application {
         Scene scene = new Scene(root);
 
         // Set the title and the scene to the stage
-        primaryStage.setTitle("Vertical Tabs Example");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

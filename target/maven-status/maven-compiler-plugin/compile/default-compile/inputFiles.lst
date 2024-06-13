@@ -6,6 +6,7 @@
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/INFO/Service.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/INFO/CPU_INFO.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/INFO/MEMORY_INFO.java
+/home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/StartUpController.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/MemoryTabController.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/DiskTabController.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/CPUTabController.java
@@ -13,4 +14,6 @@
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/ServiceTableController.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/INFO/ServiceInfo.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/PerformanceTabController.java
+/home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/Get_StartUp_App.java
 /home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/INFO/Processing.java
+/home/not-z3r0/NetBeansProjects/Project1.Server_Info/src/main/java/GUI/StartUp.java

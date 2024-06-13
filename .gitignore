@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /test/Project1/target/
 /JavaFX/JavaApplication1/nbproject/private/
 /JavaFX/JavaApplication1/build/
@@ -6,3 +7,6 @@
 /testMavenJFX/GUI/target/
 /testMavenJFX/MavenJFX/target/
 /MVJFX/testGui/target/
+=======
+/target/
+>>>>>>> Tuan_test
