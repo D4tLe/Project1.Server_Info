@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox prefHeight="576.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
+<VBox prefHeight="764.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
    <children>
-      <TableView fx:id="Table_View" prefHeight="542.0" prefWidth="1000.0">
+      <TableView fx:id="Table_View" prefHeight="724.0" prefWidth="1000.0">
          <columns>
             <TableColumn fx:id="Proc_Table_Name" prefWidth="-1.0" text="Name" />
             <TableColumn fx:id="Proc_Table_PID" prefWidth="-1.0" text="PID" />

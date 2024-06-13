@@ -71,7 +71,7 @@ public class ProcessTableController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         UpdateTable();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(8000), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5000), event -> {
             selectedItems = Table_View.getSelectionModel().getSelectedItem();
             if (selectedItems != null) {
                 System.out.println(selectedItems.getName());
