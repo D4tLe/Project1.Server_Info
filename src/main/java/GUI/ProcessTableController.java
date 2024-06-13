@@ -51,8 +51,19 @@ public class ProcessTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event -> {
-            UpdateTable();
+        UpdateTable();
+        ObservableList<Processing> selectedItems = Table_View.getSelectionModel().getSelectedItems();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), event -> {
+            ProcessInfor proc = new ProcessInfor();
+            ObservableList <Processing> list = FXCollections.observableArrayList(proc.getProcessInfo());
+            
+            Table_View.getItems().setAll(list);
+            
+            for (Processing p : selectedItems) {
+                if (list.contains(p)) {
+                    Table_View.getSelectionModel().select(p);
+                }
+            }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
