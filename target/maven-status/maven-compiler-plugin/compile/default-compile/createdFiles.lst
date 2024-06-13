@@ -14,6 +14,7 @@ GUI/CPUTabController$CPUChart$1.class
 GUI/PerformanceTabController.class
 INFO/DISK_INFO.class
 GUI/StartUp.class
+GUI/ProcessTableController$1.class
 GUI/CPUTabController.class
 GUI/NetworkTabController.class
 GUI/MemoryTabController$1.class
@@ -25,6 +26,7 @@ INFO/NETWORK_INFO.class
 GUI/ProcessTableController.class
 GUI/StartUpController.class
 GUI/CPUTabController$CPUChart$2.class
+INFO/ProcessInfor$DEScomparator.class
 GUI/NetworkTabController$1.class
 GUI/Get_StartUp_App.class
 INFO/Processing.class

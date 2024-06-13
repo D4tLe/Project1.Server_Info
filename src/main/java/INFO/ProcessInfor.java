@@ -1,6 +1,8 @@
 package INFO;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import oshi.SystemInfo;
@@ -13,7 +15,7 @@ import oshi.util.FormatUtil;
 public class ProcessInfor {
     private static List <OSProcess> processes;
     private static ArrayList <Processing> procInfo; 
-    
+
     private static String convertMB(long num) {
         double p = (double) num / (1024 * 1024);
         String res = String.format("%.2f", p);
@@ -21,10 +23,24 @@ public class ProcessInfor {
         return res;
     }
 
+    public static class DEScomparator implements Comparator<OSProcess> {
+        @Override
+        public int compare(OSProcess os1, OSProcess os2) {
+            if (os1.getResidentSetSize() == os2.getResidentSetSize()) {
+                return 0;
+            }
+            else if (os1.getResidentSetSize() < os2.getResidentSetSize()) {
+                return 1;
+            }
+            else return -1;
+        }
+    }
+
     public static ArrayList <Processing> getProcessInfo() {
         SystemInfo si = new SystemInfo();
         OperatingSystem os = si.getOperatingSystem();
         processes = os.getProcesses(ProcessFiltering.ALL_PROCESSES, OperatingSystem.ProcessSorting.CPU_DESC, os.getProcessCount());
+        Collections.sort(processes, new DEScomparator());
 
         procInfo = new ArrayList<>();
         for (OSProcess proc : processes) {
@@ -33,8 +49,9 @@ public class ProcessInfor {
             State status = proc.getState();
             long total = si.getHardware().getMemory().getTotal();
             Double Mem = (double) proc.getResidentSetSize() / (1024 * 1024);
+            String S_Mem = String.format("%.2f", Mem);
             int Archi = proc.getBitness();
-            Processing tmp = new Processing(Name, ID, status, Mem, Archi);
+            Processing tmp = new Processing(Name, ID, status, S_Mem, Archi);
             procInfo.add(tmp);
         }
         return procInfo;
