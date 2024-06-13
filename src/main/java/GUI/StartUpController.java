@@ -28,13 +28,17 @@ public class StartUpController implements Initializable {
     @FXML
     private TableView <StartUp> StartUp_Table_View;
     
+    @FXML
+    private TableColumn <StartUp, String> StartUp_Command;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Get_StartUp_App st = new Get_StartUp_App();
-        ObservableList <StartUp> list = FXCollections.observableArrayList(st.getStartUpInfo());    
+       ObservableList <StartUp> list = FXCollections.observableArrayList(st.getStartUpInfo());    
         StartUp_Name.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Name"));
         StartUp_Des.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Des"));
         StartUp_Pub.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Pub"));
+        StartUp_Command.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Command"));
         
         StartUp_Table_View.setItems(list);
     }

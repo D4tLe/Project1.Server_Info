@@ -68,7 +68,7 @@ public class Get_StartUp_App {
  
         BufferedReader reader = new BufferedReader(
         new InputStreamReader(process.getInputStream()));
-        String line, Name = "", Pub = "", Des = "";
+        String line, Name = "", Pub = "", Des = "", Command = "";
         line = reader.readLine();
         int cnt = 1;
         while (line != null) {
@@ -87,22 +87,24 @@ public class Get_StartUp_App {
                             if (i % 2 == 0) tmp = line.trim();
                             else tmp = "";
                         }
-                        System.out.println(line + "" + Integer.toString(i));
+                        //System.out.println(line + "" + Integer.toString(i));
                         //System.out.println(line);
                         line = reader.readLine();
                         if (cnt == 0) {
                             if (i == 1) Name = tmp;
                             else if (i == 5) Des = tmp;
                             else if (i == 7) Pub = tmp;
+                            else if (i == 11) Command = tmp;
                         }
                         else {
                             if (i == 0) Name = tmp;
                             else if (i == 4) Des = tmp;
                             else if (i == 6) Pub = tmp;
+                            else if (i == 2) Command = tmp;
                         }
                     }
                     //System.out.println(Name + " " + Des + " " + Pub);
-                    res.add(new StartUp(Name, Des, Pub));
+                    res.add(new StartUp(Name, Des, Pub, Command));
                     if (line == null) break;
                     while (line.trim() == "") {
                         line = reader.readLine();

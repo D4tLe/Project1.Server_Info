@@ -1,6 +1,7 @@
 GUI\ServiceInfo.class
 GUI\CPU_INFO.class
 GUI\Get_StartUp_App.class
+GUI\Users.class
 GUI\Pane\DiskRealTimeChartPane.class
 GUI\ServiceTableController.class
 GUI\Pane\GPURealTimeChartPane.class
@@ -8,6 +9,7 @@ GUI\Pane\MemoryRealTimeChartPane.class
 GUI\StartUp.class
 GUI\Tab\NetworkTab.class
 GUI\Pane\NetworkRealTimeChartPane.class
+GUI\Users_Info.class
 GUI\DISK_INFO.class
 GUI\MEMORY_INFO.class
 GUI\Pane\DiskRealTimeChartPane$1.class
@@ -15,6 +17,7 @@ GUI\Pane\NetworkRealTimeChartPane$1.class
 GUI\Tab\CPUTab.class
 GUI\Tab\PerformanceTab.class
 GUI\NETWORK_INFO.class
+GUI\User_Controller.class
 GUI\Tab\MemoryTab.class
 GUI\MainController.class
 GUI\Service.class
