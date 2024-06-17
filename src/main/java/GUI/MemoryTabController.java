@@ -9,7 +9,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import oshi.util.FormatUtil;
 
@@ -17,7 +16,7 @@ public class MemoryTabController {
 
     private MEMORY_INFO memory = new MEMORY_INFO();
     private Series<Number, Number> RAMSeries, SwapSeries;
-    private double interval = 500;
+    private double interval = 1000;
 
     @FXML
     private Label totalMemory, inUsed, available, committed, cache, page, nonPage, speed, slotUsed, formFactor, hardwareReverse;
@@ -63,12 +62,12 @@ public class MemoryTabController {
         memoryChart.setAnimated(false);
         memoryChart.getData().addAll(RAMSeries, SwapSeries);
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
+        /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
             updateSpecs();
             updateChart();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        timeline.play();*/
     }
 
     private void updateSpecs() {
@@ -95,12 +94,13 @@ public class MemoryTabController {
         });
 
         if (RAMSeries.getData().size() > 60 * 1000d / getInterval() + 1) {
-            Data garbage = RAMSeries.getData().get(0);
-            garbage = null;
             RAMSeries.getData().remove(0);
-            garbage = SwapSeries.getData().get(0);
-            garbage = null;
             SwapSeries.getData().remove(0);
         }
+    }
+    
+    public void updateTab() {
+        updateSpecs();
+        updateChart();
     }
 }

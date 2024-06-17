@@ -133,17 +133,16 @@ public class DiskTabController {
         });
 
         if (activeTimeSeries.getData().size() > 60 * 1000d / getInterval()) {
-            XYChart.Data garbage = activeTimeSeries.getData().get(0);
-            garbage = null;
             activeTimeSeries.getData().remove(0);
-            garbage = readSpeedSeries.getData().get(0);
-            garbage = null;
             readSpeedSeries.getData().remove(0);
-            garbage = writeSpeedSeries.getData().get(0);
-            garbage = null;
             this.writeSpeedSeries.getData().remove(0);
         }
 
         diskInfo.updateAttributes();
+    }
+    
+    public void updateTab() {
+        updateSpecs();
+        updateChart();
     }
 }

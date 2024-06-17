@@ -1,6 +1,8 @@
 package GUI;
 
 import INFO.CPU_INFO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ public class CPUTabController {
 
     private CPU_INFO cpu;
     private double interval = 800;
+    private double time = 60;
 
     public CPUTabController() {
         this.cpu = new CPU_INFO();
@@ -52,8 +55,11 @@ public class CPUTabController {
                 }
             });
             this.series = new Series<Number, Number>();
+            this.setCreateSymbols(false);
             this.getData().add(series);
             this.setAnimated(false);
+            this.getXAxis().setTickLabelsVisible(false);
+            this.getXAxis().setOpacity(0);
         }
 
         public Series<Number, Number> getSeries() {
@@ -87,18 +93,21 @@ public class CPUTabController {
 
         for (int i = 0; i < prefColumn; i++) {
             for (int j = 0; j < prefRow; j++) {
-                CPUChart chart = new CPUChart(new NumberAxis(60, 0, 10), new NumberAxis(0, 100, 100));
+                CPUChart chart = new CPUChart(new NumberAxis(0, 60, 0), new NumberAxis(0, 100, 100));
                 chart.getSeries().setName("CPU" + (i * prefRow + j));
                 gridPane.add(chart, i, j);
             }
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
+
+
+        /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
             updateSpecs();
             updateChart();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        timeline.play();*/
+                
     }
 
     public int[] calculateGridPaneSize() {
@@ -123,23 +132,28 @@ public class CPUTabController {
     private void updateChart() {
         double[] eachProcessorLoad = cpu.getEachProcessorsLoad();
         int count = cpu.getLogicalProcessors();
+        time += interval / 1000d;
 
         for (int i = 0; i < count; i++) {
             CPUChart chart = (CPUChart) gridPane.getChildren().get(i);
+            ((NumberAxis) chart.getXAxis()).setUpperBound(time);
+            ((NumberAxis) chart.getXAxis()).setLowerBound(time - 60);
             Series<Number, Number> series = chart.getSeries();
 
-            series.getData().add(new Data<>(0, eachProcessorLoad[i] * 100));
-
-            series.getData().forEach(dataPoint -> {
+            series.getData().add(new Data<>(time, eachProcessorLoad[i] * 100));
+             
+            /*series.getData().forEach(dataPoint -> {
                 dataPoint.setXValue(dataPoint.getXValue().doubleValue() + getInterval() / 1000d);
-                dataPoint.getNode().setVisible(false);
-            });
+            });*/
 
             if (series.getData().size() > 60 * 1000d / getInterval() + 1) {
-                Data garbage = series.getData().get(0);
-                garbage = null;
                 series.getData().remove(0);
             }
         }
+    }
+    
+    public void updateTab() {
+        updateSpecs();
+        updateChart();
     }
 }

@@ -1,7 +1,4 @@
 package GUI;
-
-import GUI.Users;
-import GUI.Users_Info;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -14,14 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
-import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.HardwareAbstractionLayer;
 
 public class User_Controller implements Initializable {
     
     private static Users_Info us = new Users_Info();
-    private static SystemInfo si = new SystemInfo();
 
     @FXML
     private TableView<Users> Users_Table_View;
@@ -41,10 +34,10 @@ public class User_Controller implements Initializable {
     public void Update() {
         ObservableList <Users> list = FXCollections.observableArrayList(us.get_Users_Info());
         
-        Users.setCellValueFactory(new PropertyValueFactory <Users, String>("Users"));
-        Users_CPU.setCellValueFactory(new PropertyValueFactory <Users, String>("CPU"));
-        Users_Memory.setCellValueFactory(new PropertyValueFactory <Users, String>("Memory"));
-        Users_Disk.setCellValueFactory(new PropertyValueFactory <Users, String>("Disk"));
+        Users.setCellValueFactory(new PropertyValueFactory <>("Users"));
+        Users_CPU.setCellValueFactory(new PropertyValueFactory <>("CPU"));
+        Users_Memory.setCellValueFactory(new PropertyValueFactory <>("Memory"));
+        Users_Disk.setCellValueFactory(new PropertyValueFactory <>("Disk"));
         
         Users_Table_View.setItems(list);
     }
@@ -52,7 +45,7 @@ public class User_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(800), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event -> {
             Update();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

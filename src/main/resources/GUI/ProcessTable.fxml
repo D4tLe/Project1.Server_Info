@@ -3,25 +3,39 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="764.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1078.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
    <children>
-      <TableView fx:id="Table_View" prefHeight="724.0" prefWidth="1000.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="1078.0" spacing="20.0">
+         <children>
+            <Label text="Filter" />
+            <TextField fx:id="filterTf" />
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+      <TableView fx:id="Table_View" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="884.0" prefWidth="1078.0">
          <columns>
             <TableColumn fx:id="Proc_Table_Name" prefWidth="-1.0" text="Name" />
             <TableColumn fx:id="Proc_Table_PID" prefWidth="-1.0" text="PID" />
             <TableColumn fx:id="Proc_Table_Status" prefWidth="-1.0" text="Status" />
-            <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" sortType="DESCENDING" text=" Memory (MB)" />
+            <TableColumn fx:id="Proc_Table_CPU" prefWidth="-1.0" text="\%CPU" />
+            <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" sortType="DESCENDING" text="\%Mem" />
             <TableColumn fx:id="Proc_Table_Architect" prefWidth="-1.0" text="Architect" />
+            <TableColumn fx:id="Proc_Table_Path" prefWidth="-1.0" text="Path" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <ButtonBar prefHeight="42.0" prefWidth="980.0">
+      <ButtonBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="1058.0">
         <buttons>
           <Button fx:id="endTaskBtn" mnemonicParsing="false" text="End Task" />
         </buttons>

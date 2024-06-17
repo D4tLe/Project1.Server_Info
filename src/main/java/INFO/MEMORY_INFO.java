@@ -1,21 +1,8 @@
 package INFO;
 
 import oshi.*;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.hardware.CentralProcessor.ProcessorIdentifier;
-
-import com.sun.jna.Platform;
-
-import java.util.*;
-
-import oshi.software.os.OperatingSystem;
-import oshi.util.FormatUtil;
-import oshi.util.tuples.Pair;
-
-import oshi.driver.windows.perfmon.ProcessInformation.HandleCountProperty;
-import oshi.hardware.CentralProcessor.ProcessorCache;
 import oshi.hardware.GlobalMemory;
+import oshi.software.os.OperatingSystem;
 
 public class MEMORY_INFO {
     private SystemInfo sysInfo;

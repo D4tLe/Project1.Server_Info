@@ -12,10 +12,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import oshi.PlatformEnum;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -24,7 +20,6 @@ import oshi.hardware.HWDiskStore;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OperatingSystem;
-import oshi.util.Util;
 
 /**
  *
@@ -39,12 +34,9 @@ public class Users_Info {
         ArrayList<Users> res = new ArrayList<>();
 
         if (CURRENT_PLATFORM.equals(PlatformEnum.WINDOWS)) {
-            String username = "";
+            String username;
             SystemInfo si = new SystemInfo();
             HardwareAbstractionLayer hal = si.getHardware();
-            OperatingSystem os = si.getOperatingSystem();
-            OSProcess myProc = os.getProcess(os.getProcessId());
-            OSProcess p = os.getProcess(os.getProcessId());
             GlobalMemory memory = hal.getMemory();
 
             username = Advapi32Util.getUserName();
@@ -73,12 +65,10 @@ public class Users_Info {
                 ProcessBuilder psBuilder = new ProcessBuilder("ps", "-eo", "user,%cpu,%mem", "--no-headers");
                 Process psProcess = psBuilder.start();
 
-                // Step 2: Execute awk command
                 ProcessBuilder awkBuilder = new ProcessBuilder("awk",
                         "{cpu[$1]+=$2; mem[$1]+=$3} END {for(user in cpu) printf \"%-20s %-10.2f %-10.2f\\n\", user, cpu[user], mem[user]}");
                 Process awkProcess = awkBuilder.start();
 
-                // Step 3: Connect ps output to awk input
                 try (BufferedReader psOutput = new BufferedReader(new InputStreamReader(psProcess.getInputStream())); OutputStreamWriter awkInput = new OutputStreamWriter(awkProcess.getOutputStream())) {
                     String line;
                     while ((line = psOutput.readLine()) != null) {
@@ -86,7 +76,6 @@ public class Users_Info {
                     }
                 }
 
-                // Step 4: Read awk output
                 BufferedReader awkOutput = new BufferedReader(new InputStreamReader(awkProcess.getInputStream()));
                 String line;
 
@@ -98,7 +87,7 @@ public class Users_Info {
 
                     res.add(new Users(username, cpu, memory));
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
             }
 
         }

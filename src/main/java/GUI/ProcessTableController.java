@@ -1,10 +1,10 @@
 package GUI;
 
-import INFO.ProcessInfor;
-import INFO.Processing;
+import INFO.PROCESS_INFO;
 import com.sun.jna.Platform;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,10 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.collections.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.beans.value.ChangeListener;
+
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,86 +26,105 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import oshi.PlatformEnum;
-import oshi.software.os.OSProcess.*;
+import oshi.SystemInfo;
+import oshi.software.os.OSProcess;
+import oshi.software.os.OSProcess.State;
+import oshi.software.os.OperatingSystem;
 
 public class ProcessTableController implements Initializable {
-    
+
     private static final PlatformEnum CURRENT_PLATFORM = PlatformEnum.getValue(Platform.getOSType());
+
+    @FXML
+    private TableColumn<PROCESS_INFO, Integer> Proc_Table_PID;
+
+    @FXML
+    private TableColumn<PROCESS_INFO, State> Proc_Table_Status;
+
+    @FXML
+    private TableColumn<PROCESS_INFO, Double> Proc_Table_Memory;
+
+    @FXML
+    private TableView<PROCESS_INFO> Table_View;
+
+    @FXML
+    private TableColumn<PROCESS_INFO, String> Proc_Table_Name;
     
     @FXML
-    private TableColumn<Processing, Integer> Proc_Table_PID;
+    private TableColumn<PROCESS_INFO, String> Proc_Table_Path;
     
     @FXML
-    private TableColumn<Processing, State> Proc_Table_Status;
-    
+    private TableColumn<PROCESS_INFO, Double> Proc_Table_CPU;
+
     @FXML
-    private TableColumn<Processing, String> Proc_Table_Memory;
-    
-    @FXML
-    private TableView<Processing> Table_View;
-    
-    @FXML
-    private TableColumn<Processing, String> Proc_Table_Name;
-    
-    @FXML
-    private TableColumn<Processing, Integer> Proc_Table_Architect;
-    
+    private TableColumn<PROCESS_INFO, Integer> Proc_Table_Architect;
+
     @FXML
     private Button endTaskBtn;
-    
+
     @FXML
     private TextField filterTf;
-    
-    private static Processing selectedItems;
 
-    //@Override
-    public void UpdateTable() {
-        ProcessInfor proc = new ProcessInfor();
-        ObservableList<Processing> list = FXCollections.observableArrayList(proc.getProcessInfo());
-        
-        Proc_Table_Name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        Proc_Table_Status.setCellValueFactory(new PropertyValueFactory<>("Status"));
-        Proc_Table_PID.setCellValueFactory(new PropertyValueFactory<>("PID"));
-        Proc_Table_Memory.setCellValueFactory(new PropertyValueFactory<>("Memory"));
-        Proc_Table_Architect.setCellValueFactory(new PropertyValueFactory<>("Architect"));
-        
-        Table_View.setItems(list);
-    }
+    private static PROCESS_INFO selectedItems;
+    private ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
+    private ArrayList<Integer> pidList = new ArrayList<>();
     
+
+    public void UpdateTable() {
+        
+        SystemInfo si = new SystemInfo();
+        OperatingSystem os = si.getOperatingSystem();
+        for (OSProcess proc : os.getProcesses()) {
+            procList.add(new PROCESS_INFO(proc));
+            pidList.add(proc.getProcessID());
+        }
+
+        Proc_Table_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        Proc_Table_Status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        Proc_Table_PID.setCellValueFactory(new PropertyValueFactory<>("PID"));
+        Proc_Table_Memory.setCellValueFactory(new PropertyValueFactory<>("memoryUsage"));
+        Proc_Table_Architect.setCellValueFactory(new PropertyValueFactory<>("architect"));
+        Proc_Table_CPU.setCellValueFactory(new PropertyValueFactory<>("CPUUsage"));
+        Proc_Table_Path.setCellValueFactory(new PropertyValueFactory<>("path"));
+
+        Table_View.setItems(procList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UpdateTable();
-        
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event -> {
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5000), event -> {
             selectedItems = Table_View.getSelectionModel().getSelectedItem();
             if (selectedItems != null) {
                 System.out.println(selectedItems.getName());
             }
             
-            ProcessInfor proc = new ProcessInfor();
-            ObservableList<Processing> list;
-            if (filterTf.getText().equals("")) {
-                list = FXCollections.observableArrayList(proc.getProcessInfo());
-            } else {
-                list = FXCollections.observableArrayList(proc.getProcessInfoFiltered(filterTf.getText()));
+            SystemInfo si = new SystemInfo();
+            OperatingSystem os = si.getOperatingSystem();
+            for (OSProcess proc : os.getProcesses()) {
+                if (!pidList.contains(proc.getProcessID())) {
+                    procList.add(new PROCESS_INFO(proc));
+                    pidList.add(proc.getProcessID());
+                }
             }
             
-            Table_View.getItems().setAll(list);
+            Table_View.getItems().forEach(proc -> proc.updateAttributes());
+            Table_View.refresh();
             
-            if (list.contains(selectedItems)) {
+            if (procList.contains(selectedItems)) {
                 Table_View.getSelectionModel().select(selectedItems);
-                Table_View.scrollTo(selectedItems);
             }
             
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        
+
         endTaskBtn.setOnAction(new EventHandler() {
-            
+
             @Override
             public void handle(Event e) {
-                Processing selectedItem = Table_View.getSelectionModel().getSelectedItem();
+                PROCESS_INFO selectedItem = Table_View.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     try {
                         String killCommand;
@@ -115,10 +133,11 @@ public class ProcessTableController implements Initializable {
                         } else {
                             killCommand = "kill -9 " + selectedItem.getPID();
                         }
-                        
+
                         Runtime.getRuntime().exec(killCommand);
-                        
-                        Table_View.getItems().remove(selectedItem);
+
+                        procList.remove(selectedItem);
+                        pidList.remove(Integer.valueOf(selectedItem.getPID()));
                     } catch (IOException ex) {
                         Logger.getLogger(ProcessTableController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -126,19 +145,26 @@ public class ProcessTableController implements Initializable {
             }
         });
         
-        filterTf.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            showFilterProcesses(newValue);
-        });
-    }
-    
-    private void showFilterProcesses(String newValue) {
-        ProcessInfor proc = new ProcessInfor();
         
-        if (newValue.equals("")) {
-            Table_View.setItems(FXCollections.observableArrayList(proc.getProcessInfo()));
-        } else {
-            Table_View.setItems(FXCollections.observableArrayList(proc.getProcessInfoFiltered(newValue)));
-        }
+        FilteredList<PROCESS_INFO> filteredData = new FilteredList<>(procList, p -> true);
+
+
+        filterTf.setPromptText("Filter");
+
+        // Listener to update filter
+        filterTf.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(proc -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                
+                String lowerCaseValue = newValue.toLowerCase();
+
+                return (proc.getName().toLowerCase().contains(lowerCaseValue) || Integer.toString(proc.getPID()).contains(lowerCaseValue) || 
+                        proc.getPath().toLowerCase().contains(lowerCaseValue));
+            });
+        });
+        
+        Table_View.setItems(filteredData);
     }
-    
 }
