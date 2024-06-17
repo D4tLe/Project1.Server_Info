@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="Table_View" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
-   <columns>
-      <TableColumn fx:id="Proc_Table_Name" prefWidth="-1.0" text="Name" />
-      <TableColumn fx:id="Proc_Table_PID" prefWidth="-1.0" text="PID" />
-      <TableColumn fx:id="Proc_Table_Status" prefWidth="-1.0" text="Status" />
-      <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" sortType="DESCENDING" text=" Memory (MB)" />
-      <TableColumn fx:id="Proc_Table_Architect" prefWidth="-1.0" text="Architect" />
-   </columns>
-   <columnResizePolicy>
-      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-   </columnResizePolicy>
-</TableView>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProcessTableController">
+   <children>
+      <TableView fx:id="Table_View" prefHeight="438.0" prefWidth="994.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <columns>
+            <TableColumn fx:id="Proc_Table_Name" prefWidth="-1.0" text="Name" />
+            <TableColumn fx:id="Proc_Table_PID" prefWidth="-1.0" text="PID" />
+            <TableColumn fx:id="Proc_Table_Status" prefWidth="-1.0" text="Status" />
+            <TableColumn fx:id="Proc_Table_Memory" prefWidth="-1.0" sortType="DESCENDING" text=" Memory (MB)" />
+            <TableColumn fx:id="Proc_Table_Architect" prefWidth="200.0" text="Architect" />
+         </columns>
+      </TableView>
+      <Button fx:id="endTaskBtn" layoutX="915.0" layoutY="446.0" mnemonicParsing="false" text="End Task" />
+   </children>
+</AnchorPane>

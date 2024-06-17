@@ -9,6 +9,9 @@ import oshi.software.os.OSProcess.State;
 import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystem.ProcessFiltering;
 import oshi.util.FormatUtil;
+import java.util.*;
+
+
 
 public class ProcessInfor {
     private static List <OSProcess> processes;
@@ -20,12 +23,26 @@ public class ProcessInfor {
         res = res + " MB";
         return res;
     }
+    
+    public static class DEScomparator implements Comparator<OSProcess> {
+        @Override
+        public int compare(OSProcess os1, OSProcess os2) {
+            if (os1.getResidentSetSize() == os2.getResidentSetSize()) {
+                return 0;
+            }
+            else if (os1.getResidentSetSize() < os2.getResidentSetSize()) {
+                return 1;
+            }
+            else return -1;
+        }
+    }
 
     public static ArrayList <Processing> getProcessInfo() {
         SystemInfo si = new SystemInfo();
         OperatingSystem os = si.getOperatingSystem();
         processes = os.getProcesses(ProcessFiltering.ALL_PROCESSES, OperatingSystem.ProcessSorting.CPU_DESC, os.getProcessCount());
-
+        Collections.sort(processes, new DEScomparator());
+        
         procInfo = new ArrayList<>();
         for (OSProcess proc : processes) {
             String Name = proc.getName();

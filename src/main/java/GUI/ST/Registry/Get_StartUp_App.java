@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package GUI;
+package GUI.ST.Registry;
 
+import GUI.ST.Registry.StartUp;
 import com.sun.jna.platform.win32.Advapi32Util;
 import static com.sun.jna.platform.win32.WinReg.HKEY_CURRENT_USER;
 import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;

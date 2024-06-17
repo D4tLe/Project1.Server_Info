@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import com.sun.jna.platform.win32.Advapi32Util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -33,15 +34,11 @@ public class Users_Info {
         OSProcess myProc = os.getProcess(os.getProcessId());
         OSProcess p = os.getProcess(os.getProcessId());
         GlobalMemory memory = hal.getMemory();
-        
-        for (Map.Entry<String, String> e : p.getEnvironmentVariables().entrySet()) {
-            //oshi.add("  " + e.getKey() + "=" + e.getValue());
-            //System.out.println(e.getKey() + " " + e.getValue());
-            if (e.getKey().contains("USERNAME")) Users = e.getValue();
-        }
+ 
+        Users = Advapi32Util.getUserName();
         CentralProcessor processor = hal.getProcessor();
         
-        CPU = processor.getSystemCpuLoad(800) * 100;
+        CPU = processor.getSystemCpuLoad(300) * 100;
         
         String S_CPU = String.format("%.1f", CPU) + "%";
         

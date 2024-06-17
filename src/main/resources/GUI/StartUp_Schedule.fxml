@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TableView fx:id="Sch_Table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="1049.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GUI.Schedule_Controller">
+  <columns>
+    <TableColumn fx:id="Sch_Name" prefWidth="150.0" text="Task Name" />
+    <TableColumn fx:id="Sch_Des" prefWidth="154.0" text="Description" />
+      <TableColumn fx:id="Sch_Pub" prefWidth="151.0" text="Publisher" />
+      <TableColumn fx:id="Sch_Path" prefWidth="352.0" text="Image Path" />
+      <TableColumn fx:id="Sch_Time" prefWidth="241.0" text="Time Stamp" />
+  </columns>
+</TableView>

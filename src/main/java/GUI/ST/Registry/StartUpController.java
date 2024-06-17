@@ -1,5 +1,7 @@
-package GUI;
+package GUI.ST.Registry;
 
+import GUI.ST.Registry.Get_StartUp_App;
+import GUI.ST.Registry.StartUp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -34,7 +36,7 @@ public class StartUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Get_StartUp_App st = new Get_StartUp_App();
-       ObservableList <StartUp> list = FXCollections.observableArrayList(st.getStartUpInfo());    
+        ObservableList <StartUp> list = FXCollections.observableArrayList(st.getStartUpInfo());    
         StartUp_Name.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Name"));
         StartUp_Des.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Des"));
         StartUp_Pub.setCellValueFactory(new PropertyValueFactory <StartUp, String>("Pub"));

@@ -54,7 +54,7 @@ public class User_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(800), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), event -> {
             Update();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
