@@ -1,20 +1,19 @@
 package INFO;
 
-import oshi.SystemInfo;
 import oshi.software.os.OSProcess.*;
-import oshi.software.os.OperatingSystem;
 /**
  *
  * @author leunaut
  */
 public class Processing {
-    String Name;
-    State Status;
-    int PID, Architect;
-    String Memory;
-    public Processing(String Name, int PID, State Status, String Memory, int Architect) {
+    private String Name, Memory, User, CPU;
+    private State Status;
+    private int PID, Architect;
+    
+    public Processing(String Name, int PID, String User, State Status, String Memory, int Architect) {
         this.Name = Name;
         this.PID = PID;
+        this.User = User;
         this.Status = Status;
         this.Memory = Memory;
         this.Architect = Architect;
@@ -58,6 +57,15 @@ public class Processing {
 
     public void setMemory(String Memory) {
         this.Memory = Memory;
+    }
+
+    public String getUser() {
+        return User;
+    }
+
+    
+    public void setUser(String User) {
+        this.User = User;
     }
     
 }

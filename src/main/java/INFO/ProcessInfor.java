@@ -10,20 +10,21 @@ import oshi.software.os.OSProcess;
 import oshi.software.os.OSProcess.State;
 import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystem.ProcessFiltering;
-import oshi.util.FormatUtil;
 
 public class ProcessInfor {
-    private static List <OSProcess> processes;
-    private static ArrayList <Processing> procInfo; 
+    
+    private SystemInfo si;
+    private OperatingSystem os;
+    private List <OSProcess> processes;
+    private ArrayList <Processing> procInfo;
+    private ArrayList<Processing> procInfoFiltered;
 
-    private static String convertMB(long num) {
-        double p = (double) num / (1024 * 1024);
-        String res = String.format("%.2f", p);
-        res = res + " MB";
-        return res;
+    public ProcessInfor() {
+        this.si = new SystemInfo();
+        this.os = si.getOperatingSystem();
     }
-
-    public static class DEScomparator implements Comparator<OSProcess> {
+    
+    public class DEScomparator implements Comparator<OSProcess> {
         @Override
         public int compare(OSProcess os1, OSProcess os2) {
             if (os1.getResidentSetSize() == os2.getResidentSetSize()) {
@@ -36,9 +37,7 @@ public class ProcessInfor {
         }
     }
 
-    public static ArrayList <Processing> getProcessInfo() {
-        SystemInfo si = new SystemInfo();
-        OperatingSystem os = si.getOperatingSystem();
+    public ArrayList<Processing> getProcessInfo() {
         processes = os.getProcesses(ProcessFiltering.ALL_PROCESSES, OperatingSystem.ProcessSorting.CPU_DESC, os.getProcessCount());
         Collections.sort(processes, new DEScomparator());
 
@@ -46,14 +45,33 @@ public class ProcessInfor {
         for (OSProcess proc : processes) {
             String Name = proc.getName();
             int ID = proc.getProcessID();
+            String User = proc.getUser();
             State status = proc.getState();
-            long total = si.getHardware().getMemory().getTotal();
             Double Mem = (double) proc.getResidentSetSize() / (1024 * 1024);
             String S_Mem = String.format("%.2f", Mem);
             int Archi = proc.getBitness();
-            Processing tmp = new Processing(Name, ID, status, S_Mem, Archi);
+            Processing tmp = new Processing(Name, ID, User, status, S_Mem, Archi);
             procInfo.add(tmp);
         }
         return procInfo;
+    }
+    
+    public ArrayList<Processing> getProcessInfoFiltered(String str) {
+        processes = os.getProcesses();
+        procInfoFiltered = new ArrayList<>();
+        for (OSProcess proc : processes) {
+            String Name = proc.getName();
+            int ID = proc.getProcessID();
+            String User = proc.getUser();
+            State status = proc.getState();
+            Double Mem = (double) proc.getResidentSetSize() / (1024 * 1024);
+            String S_Mem = String.format("%.2f", Mem);
+            int Archi = proc.getBitness();
+            if (Name.contains(str) || ("" + ID).contains(str) || User.contains(str)) {
+                Processing tmp = new Processing(Name, ID, User, status, S_Mem, Archi);
+                procInfoFiltered.add(tmp);
+            }
+        }
+        return procInfoFiltered;
     }
 }
