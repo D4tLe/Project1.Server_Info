@@ -101,32 +101,6 @@
                                  </VBox>
                                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
                                     <children>
-                                       <Label text="Committed" />
-                                       <Label fx:id="committed" text="Label">
-                                          <font>
-                                             <Font name="System Bold" size="20.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                    <GridPane.margin>
-                                       <Insets left="20.0" />
-                                    </GridPane.margin>
-                                 </VBox>
-                                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <children>
-                                       <Label text="Cached" />
-                                       <Label fx:id="cache" text="Label">
-                                          <font>
-                                             <Font name="System Bold" size="20.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                    <GridPane.margin>
-                                       <Insets left="10.0" />
-                                    </GridPane.margin>
-                                 </VBox>
-                                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="2">
-                                    <children>
                                        <Label text="Paged pool" />
                                        <Label fx:id="page" text="Label">
                                           <font>
@@ -138,7 +112,7 @@
                                        <Insets left="20.0" />
                                     </GridPane.margin>
                                  </VBox>
-                                 <VBox prefHeight="200.0" prefWidth="274.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <VBox prefHeight="200.0" prefWidth="274.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
                                        <Label text="Non-paged pool" />
                                        <Label fx:id="nonPage" text="Label">
@@ -153,14 +127,7 @@
                                  </VBox>
                               </children>
                            </GridPane>
-                           <VBox prefHeight="205.0" prefWidth="395.0" spacing="10.0">
-                              <children>
-                                 <Label fx:id="speed" text="Label" />
-                                 <Label fx:id="slotUsed" text="Label" />
-                                 <Label fx:id="formFactor" text="Label" />
-                                 <Label fx:id="hardwareReverse" text="Label" />
-                              </children>
-                           </VBox>
+                           <VBox prefHeight="205.0" prefWidth="395.0" spacing="10.0" />
                         </children>
                      </HBox>
                   </children></VBox>

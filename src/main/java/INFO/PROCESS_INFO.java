@@ -10,7 +10,6 @@ public class PROCESS_INFO {
     private int PID, architect;
     private double CPUUsage;
     private double memoryUsage;
-    private long totalMem;
     
     public PROCESS_INFO() {
         
@@ -24,9 +23,7 @@ public class PROCESS_INFO {
         this.PID = osProc.getProcessID();
         this.architect = osProc.getBitness();
         this.CPUUsage = Double.parseDouble(String.format("%.1f", 100d * osProc.getProcessCpuLoadBetweenTicks(osProc)));
-        MEMORY_INFO memoryInfo = new MEMORY_INFO();
-        this.totalMem = memoryInfo.getTotalMemory();
-        this.memoryUsage = Double.parseDouble(String.format("%.1f", 100d * osProc.getResidentSetSize() / totalMem));
+        this.memoryUsage = Double.parseDouble(String.format("%.1f", (double) osProc.getResidentSetSize() / (1024 * 1024)));
     }
     
     public String getName() {
@@ -61,6 +58,6 @@ public class PROCESS_INFO {
         osProc.updateAttributes();
         this.status = osProc.getState();
         this.CPUUsage = Double.parseDouble(String.format("%.1f", 100d * osProc.getProcessCpuLoadBetweenTicks(osProc)));
-        this.memoryUsage = Double.parseDouble(String.format("%.1f", 100d * osProc.getResidentSetSize() / totalMem));
+        this.memoryUsage = Double.parseDouble(String.format("%.1f", (double) osProc.getResidentSetSize() / (1024 * 1024)));
     }
 }

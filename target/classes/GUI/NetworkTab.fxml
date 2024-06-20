@@ -93,11 +93,9 @@
             </GridPane>
             <VBox prefHeight="197.0" prefWidth="793.0" spacing="10.0">
                <children>
-                  <Label text="Label" />
-                  <Label text="Label" />
-                  <Label text="Label" />
-                  <Label text="Label" />
-                  <Label text="Label" />
+                  <Label fx:id="adapter" text="Label" />
+                  <Label fx:id="ipv4" text="Label" />
+                  <Label fx:id="ipv6" text="Label" />
                </children>
             </VBox>
          </children>

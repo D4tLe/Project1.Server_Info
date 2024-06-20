@@ -14,8 +14,12 @@ public class NETWORK_INFO {
         this.prevTimeStamp = network.getTimeStamp();
     }
 
-    public String getName() {
+    public String getDisplayName() {
         return network.getDisplayName();
+    }
+    
+    public String getName() {
+        return network.getName();
     }
 
     public String getStatus() {
@@ -23,15 +27,23 @@ public class NETWORK_INFO {
     }
 
     public String getConnectionType() {
-        return network.getIfAlias();
+        return "" + network.getIfType();
     }
 
-    public String[] getIpv4() {
-        return network.getIPv4addr();
+    public String getIpv4() {
+        StringBuilder ipv4 = new StringBuilder();
+        for (String part: network.getIPv4addr()) {
+            ipv4.append(part);
+        }
+        return ipv4.toString();
     }
 
-    public String[] getIpv6() {
-        return network.getIPv6addr();
+    public String getIpv6() {
+        StringBuilder ipv6 = new StringBuilder();
+        for (String part: network.getIPv6addr()) {
+            ipv6.append(part).append("\n");
+        }
+        return ipv6.toString();
     }
 
     public long getSendSpeed() {

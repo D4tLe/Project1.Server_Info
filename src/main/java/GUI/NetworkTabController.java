@@ -1,15 +1,12 @@
 package GUI;
 
 import INFO.NETWORK_INFO;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
-import javafx.util.Duration;
 import oshi.hardware.NetworkIF;
 import oshi.util.FormatUtil;
 
@@ -17,12 +14,10 @@ public class NetworkTabController {
 
     private NETWORK_INFO networkInfo;
     private Series<Number, Number> sendSpeedSeries, recvSpeedSeries;
-    private double interval = 1000;
+    private double interval;
 
     @FXML
-    private Label type;
-    @FXML
-    private Label name;
+    private Label type, name, adapter, ipv4, ipv6;
     @FXML
     private LineChart speedChart;
     @FXML
@@ -51,6 +46,12 @@ public class NetworkTabController {
     }
 
     public void initialize() {
+        type.setText(networkInfo.getDisplayName().toLowerCase().contains("ethernet") ? "Ethernet" : "Wifi");
+        name.setText(networkInfo.getDisplayName());
+        adapter.setText("Adapter name: " + networkInfo.getName());
+        ipv4.setText("IPv4: " + networkInfo.getIpv4());
+        ipv6.setText("IPv6: " + networkInfo.getIpv6());
+        
         speedChart.getData().addAll(sendSpeedSeries, recvSpeedSeries);
         speedChart.getXAxis().setLabel("Time (seconds)");
         speedChart.getYAxis().setLabel("Speed");
@@ -64,12 +65,6 @@ public class NetworkTabController {
         });
         speedChart.setAnimated(false);
 
-        /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
-            updateSpecs();
-            updateChart();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play*/
     }
 
     public void updateSpecs() {

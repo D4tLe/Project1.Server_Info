@@ -1,5 +1,7 @@
 package GUI;
 
+import INFO.Schedule;
+import INFO.Schedule_Info;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -34,11 +36,11 @@ public class Schedule_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Schedule_Info st = new Schedule_Info();
         ObservableList <Schedule> list = FXCollections.observableArrayList(st.getSchedule());    
-        Sch_Name.setCellValueFactory(new PropertyValueFactory <Schedule, String>("Name"));
-        Sch_Des.setCellValueFactory(new PropertyValueFactory <Schedule, String>("Des"));
-        Sch_Pub.setCellValueFactory(new PropertyValueFactory <Schedule, String>("Pub"));
-        Sch_Path.setCellValueFactory(new PropertyValueFactory <Schedule, String>("Command"));
-        Sch_Time.setCellValueFactory(new PropertyValueFactory <Schedule, String>("Time"));
+        Sch_Name.setCellValueFactory(new PropertyValueFactory <>("Name"));
+        Sch_Des.setCellValueFactory(new PropertyValueFactory <>("Des"));
+        Sch_Pub.setCellValueFactory(new PropertyValueFactory <>("Pub"));
+        Sch_Path.setCellValueFactory(new PropertyValueFactory <>("Command"));
+        Sch_Time.setCellValueFactory(new PropertyValueFactory <>("Time"));
         
         Sch_Table.setItems(list);
     }

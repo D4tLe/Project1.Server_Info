@@ -1,15 +1,12 @@
 package GUI;
 
 import INFO.MEMORY_INFO;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
-import javafx.util.Duration;
 import oshi.util.FormatUtil;
 
 public class MemoryTabController {
@@ -19,7 +16,7 @@ public class MemoryTabController {
     private double interval = 1000;
 
     @FXML
-    private Label totalMemory, inUsed, available, committed, cache, page, nonPage, speed, slotUsed, formFactor, hardwareReverse;
+    private Label totalMemory, inUsed, available, page, nonPage;
 
     @FXML
     private LineChart memoryChart;
@@ -61,13 +58,6 @@ public class MemoryTabController {
         });
         memoryChart.setAnimated(false);
         memoryChart.getData().addAll(RAMSeries, SwapSeries);
-
-        /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
-            updateSpecs();
-            updateChart();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();*/
     }
 
     private void updateSpecs() {

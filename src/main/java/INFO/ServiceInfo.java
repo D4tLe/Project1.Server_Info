@@ -7,9 +7,9 @@ import java.util.List;
 import oshi.software.os.OSService;
 
 public class ServiceInfo {
-    private static ArrayList <Service> serviceInfo;
+    private ArrayList <Service> serviceInfo;
     
-    public static ArrayList <Service> getServiceInfo() {
+    public ArrayList <Service> getServiceInfo() {
         SystemInfo si = new SystemInfo();
         OperatingSystem os = si.getOperatingSystem();
         List<OSService> osServices = os.getServices();

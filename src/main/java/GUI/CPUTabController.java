@@ -1,10 +1,6 @@
 package GUI;
 
 import INFO.CPU_INFO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
@@ -13,7 +9,6 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
 import oshi.util.FormatUtil;
 
 public class CPUTabController {
@@ -27,7 +22,7 @@ public class CPUTabController {
     }
 
     @FXML
-    private Label cpuName, utilization, speed, processes, threads, handles, uptime, baseSpeed, sockets, cores, logicalProcessors, L1DataCache, L1InstructionCache, L2Cache, L3Cache;
+    private Label cpuName, utilization, speed, processes, threads, uptime, baseSpeed, sockets, cores, logicalProcessors, L1DataCache, L1InstructionCache, L2Cache, L3Cache;
 
     @FXML
     private GridPane gridPane;
@@ -97,17 +92,7 @@ public class CPUTabController {
                 chart.getSeries().setName("CPU" + (i * prefRow + j));
                 gridPane.add(chart, i, j);
             }
-        }
-
-
-
-        /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
-            updateSpecs();
-            updateChart();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();*/
-                
+        }              
     }
 
     public int[] calculateGridPaneSize() {
@@ -127,6 +112,7 @@ public class CPUTabController {
         processes.setText("" + cpu.getProcessesCount());
         threads.setText("" + cpu.getThreadCount());
         uptime.setText(cpu.getUpTime());
+        speed.setText(FormatUtil.formatHertz(cpu.getCurrentFreq()));
     }
 
     private void updateChart() {
@@ -141,10 +127,6 @@ public class CPUTabController {
             Series<Number, Number> series = chart.getSeries();
 
             series.getData().add(new Data<>(time, eachProcessorLoad[i] * 100));
-             
-            /*series.getData().forEach(dataPoint -> {
-                dataPoint.setXValue(dataPoint.getXValue().doubleValue() + getInterval() / 1000d);
-            });*/
 
             if (series.getData().size() > 60 * 1000d / getInterval() + 1) {
                 series.getData().remove(0);

@@ -22,19 +22,28 @@ public class PerformanceTabController {
     private ArrayList<Tab> NetworkTabs = new ArrayList<>();
     private ArrayList<DiskTabController> diskControllers = new ArrayList<>();
     private ArrayList<NetworkTabController> networkControllers = new ArrayList<>();
+    private double interval = 1000;
 
     @FXML
     private TabPane tabPane;
+    
+    public void setInterval(double interval) {
+        this.interval = interval;
+    }
+    
+    public double getInterval() {
+        return this.interval;
+    }
 
     public void initialize() throws IOException {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
 
         CPUTabController CPUController = new CPUTabController();
+        CPUController.setInterval(interval);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CPUTab.fxml"));
         loader.setController(CPUController);
         VBox CPUTabContent = loader.load();
-
         Tab newTab = new Tab();
         newTab.setContent(CPUTabContent);
         newTab.setText("CPU");
@@ -42,10 +51,10 @@ public class PerformanceTabController {
         tabPane.getTabs().add(newTab);
 
         MemoryTabController memoryController = new MemoryTabController();
+        memoryController.setInterval(interval);
         loader = new FXMLLoader(getClass().getResource("MemoryTab.fxml"));
         loader.setController(memoryController);
         VBox memoryTabContent = loader.load();
-
         newTab = new Tab();
         newTab.setContent(memoryTabContent);
         newTab.setText("Memory");
@@ -57,6 +66,7 @@ public class PerformanceTabController {
         for (int i = 0; i < diskList.size(); i++) {
 
             DiskTabController diskController = new DiskTabController(diskList.get(i), i + 1);
+            diskController.setInterval(interval);
             diskControllers.add(diskController);
 
             loader = new FXMLLoader(getClass().getResource("DiskTab.fxml"));
@@ -81,6 +91,7 @@ public class PerformanceTabController {
             NetworkIF network = networkList.get(i);
 
             NetworkTabController networkController = new NetworkTabController(network);
+            networkController.setInterval(interval);
             networkControllers.add(networkController);
 
             loader = new FXMLLoader(getClass().getResource("NetworkTab.fxml"));
@@ -106,7 +117,7 @@ public class PerformanceTabController {
             tabPane.getTabs().add(networkTab);
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
             CPUController.updateTab();
             memoryController.updateTab();
             

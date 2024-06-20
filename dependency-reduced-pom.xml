@@ -86,6 +86,9 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <mainClass>GUI.App</mainClass>
+        </configuration>
       </plugin>
     </plugins>
   </build>

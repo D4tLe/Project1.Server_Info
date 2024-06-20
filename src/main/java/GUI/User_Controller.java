@@ -1,4 +1,6 @@
 package GUI;
+import INFO.Users;
+import INFO.Users_Info;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -14,7 +16,7 @@ import javafx.util.Duration;
 
 public class User_Controller implements Initializable {
     
-    private static Users_Info us = new Users_Info();
+    private Users_Info us;
 
     @FXML
     private TableView<Users> Users_Table_View;
@@ -32,6 +34,8 @@ public class User_Controller implements Initializable {
     private TableColumn<Users, String> Users_CPU;
     
     public void Update() {
+        
+        us = new Users_Info();
         ObservableList <Users> list = FXCollections.observableArrayList(us.get_Users_Info());
         
         Users.setCellValueFactory(new PropertyValueFactory <>("Users"));

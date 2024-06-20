@@ -1,5 +1,7 @@
 package GUI;
 
+import INFO.Get_StartUp_App;
+import INFO.StartUp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;

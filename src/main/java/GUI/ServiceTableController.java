@@ -29,9 +29,9 @@ public class ServiceTableController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ServiceInfo svInfo = new ServiceInfo();
         ObservableList<Service> list = FXCollections.observableArrayList(svInfo.getServiceInfo());
-        Service_Name.setCellValueFactory(new PropertyValueFactory<Service, String>("Name"));
-        Service_Status.setCellValueFactory(new PropertyValueFactory<Service, String>("Status"));
-        Service_PID.setCellValueFactory(new PropertyValueFactory<Service, Integer>("PID"));
+        Service_Name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        Service_Status.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        Service_PID.setCellValueFactory(new PropertyValueFactory<>("PID"));
 
         Service_Table_View.setItems(list);
     }

@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,10 +50,10 @@ public class ProcessTableController implements Initializable {
 
     @FXML
     private TableColumn<PROCESS_INFO, String> Proc_Table_Name;
-    
+
     @FXML
     private TableColumn<PROCESS_INFO, String> Proc_Table_Path;
-    
+
     @FXML
     private TableColumn<PROCESS_INFO, Double> Proc_Table_CPU;
 
@@ -68,10 +69,9 @@ public class ProcessTableController implements Initializable {
     private static PROCESS_INFO selectedItems;
     private ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
     private ArrayList<Integer> pidList = new ArrayList<>();
-    
 
-    public void UpdateTable() {
-        
+    public void configTable() {
+
         SystemInfo si = new SystemInfo();
         OperatingSystem os = si.getOperatingSystem();
         for (OSProcess proc : os.getProcesses()) {
@@ -87,19 +87,18 @@ public class ProcessTableController implements Initializable {
         Proc_Table_CPU.setCellValueFactory(new PropertyValueFactory<>("CPUUsage"));
         Proc_Table_Path.setCellValueFactory(new PropertyValueFactory<>("path"));
 
-        Table_View.setItems(procList);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        UpdateTable();
+        configTable();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5000), event -> {
             selectedItems = Table_View.getSelectionModel().getSelectedItem();
             if (selectedItems != null) {
                 System.out.println(selectedItems.getName());
             }
-            
+
             SystemInfo si = new SystemInfo();
             OperatingSystem os = si.getOperatingSystem();
             for (OSProcess proc : os.getProcesses()) {
@@ -108,14 +107,14 @@ public class ProcessTableController implements Initializable {
                     pidList.add(proc.getProcessID());
                 }
             }
-            
+
             Table_View.getItems().forEach(proc -> proc.updateAttributes());
             Table_View.refresh();
-            
+
             if (procList.contains(selectedItems)) {
                 Table_View.getSelectionModel().select(selectedItems);
             }
-            
+
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -144,27 +143,28 @@ public class ProcessTableController implements Initializable {
                 }
             }
         });
-        
-        
-        FilteredList<PROCESS_INFO> filteredData = new FilteredList<>(procList, p -> true);
 
+        FilteredList<PROCESS_INFO> filteredData = new FilteredList<>(procList, p -> true);
 
         filterTf.setPromptText("Filter");
 
-        // Listener to update filter
         filterTf.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(proc -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                
+
                 String lowerCaseValue = newValue.toLowerCase();
 
-                return (proc.getName().toLowerCase().contains(lowerCaseValue) || Integer.toString(proc.getPID()).contains(lowerCaseValue) || 
-                        proc.getPath().toLowerCase().contains(lowerCaseValue));
+                return (proc.getName().toLowerCase().contains(lowerCaseValue) || Integer.toString(proc.getPID()).contains(lowerCaseValue)
+                        || proc.getPath().toLowerCase().contains(lowerCaseValue));
             });
         });
-        
-        Table_View.setItems(filteredData);
+
+        SortedList<PROCESS_INFO> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(Table_View.comparatorProperty());
+
+        Table_View.setItems(sortedData);
     }
 }

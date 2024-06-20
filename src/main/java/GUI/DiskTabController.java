@@ -2,15 +2,12 @@
 package GUI;
 
 import INFO.DISK_INFO;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
-import javafx.util.Duration;
 import oshi.hardware.HWDiskStore;
 
 import oshi.util.FormatUtil;
@@ -93,13 +90,6 @@ public class DiskTabController {
             }
         });
         speedChart.setAnimated(false);
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(getInterval()), event -> {
-            updateSpecs();
-            updateChart();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }
 
     private void updateSpecs() {

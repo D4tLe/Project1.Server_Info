@@ -2,43 +2,41 @@ package INFO;
 
 import oshi.*;
 import oshi.hardware.GlobalMemory;
-import oshi.software.os.OperatingSystem;
 
 public class MEMORY_INFO {
     private SystemInfo sysInfo;
-    private OperatingSystem OS;
-    private GlobalMemory RAM;
+    private GlobalMemory memory;
     
     public MEMORY_INFO() {
         this.sysInfo = new SystemInfo(); 
-        this.RAM = sysInfo.getHardware().getMemory();
+        this.memory = sysInfo.getHardware().getMemory();
     }
     
     public long getTotalMemory() {
-        return RAM.getTotal();
+        return memory.getTotal();
     }
     
     public double getMemoryUsage() {
-        return (100d - (100d * RAM.getAvailable() / RAM.getTotal()));
+        return (100d - (100d * memory.getAvailable() / memory.getTotal()));
     }
     
     public double getSwapUsage() {
-        return (100d * RAM.getVirtualMemory().getSwapUsed() / RAM.getVirtualMemory().getSwapTotal());
+        return (100d * memory.getVirtualMemory().getSwapUsed() / memory.getVirtualMemory().getSwapTotal());
     }
     
     public long getMemoryInUsed() {
-        return RAM.getTotal() - RAM.getAvailable();
+        return memory.getTotal() - memory.getAvailable();
     }
     
     public long getMemoryAvailable() {
-        return RAM.getAvailable();
+        return memory.getAvailable();
     }
     
     public long getSwapUsed() {
-        return RAM.getVirtualMemory().getSwapUsed();
+        return memory.getVirtualMemory().getSwapUsed();
     }
     
     public long getNonSwapUsed() {
-        return RAM.getVirtualMemory().getSwapTotal() - RAM.getVirtualMemory().getSwapUsed();
+        return memory.getVirtualMemory().getSwapTotal() - memory.getVirtualMemory().getSwapUsed();
     }
 }

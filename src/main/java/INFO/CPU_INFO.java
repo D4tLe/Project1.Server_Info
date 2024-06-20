@@ -30,6 +30,16 @@ public class CPU_INFO {
         return pIden.getName();
     }
     
+    public long getCurrentFreq() {
+        long totalFreq = 0;
+        
+        for (long freq: CPU.getCurrentFreq()) {
+            totalFreq += freq;
+        }
+        
+        return totalFreq / CPU.getLogicalProcessorCount();
+    }
+    
     public String getUpTime() {
         return FormatUtil.formatElapsedSecs(OS.getSystemUptime());
     }

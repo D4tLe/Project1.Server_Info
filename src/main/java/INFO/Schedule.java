@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package GUI;
+package INFO;
 
-/**
- *
- * @author leunaut
- */
 public class Schedule {
     private String Name, Des, Pub, Command, Time;
     public Schedule(String Name, String Des, String Pub, String Command, String Time) {
@@ -16,6 +8,9 @@ public class Schedule {
         this.Pub = Pub;
         this.Command = Command;
         this.Time = Time;
+    }
+    
+    public Schedule() {
     }
 
     public String getName() {

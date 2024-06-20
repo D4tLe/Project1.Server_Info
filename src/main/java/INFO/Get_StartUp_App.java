@@ -2,25 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package GUI;
+package INFO;
 
 import com.sun.jna.Platform;
-import com.sun.jna.platform.win32.Advapi32Util;
-import static com.sun.jna.platform.win32.WinReg.HKEY_CURRENT_USER;
-import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import oshi.PlatformEnum;
-import oshi.SystemInfo;
-import oshi.software.os.OperatingSystem;
+
 
 /**
  *
@@ -31,33 +23,6 @@ public class Get_StartUp_App {
     private static final PlatformEnum CURRENT_PLATFORM = PlatformEnum.getValue(Platform.getOSType());
     private static ArrayList<StartUp> res = new ArrayList<>();
 
-    /*    private static Set <String> Set_StartUp = new HashSet <String> ();
-    
-    public static final String STARTUP_REGISTRY_1_E = "Software\\Microsoft\\Windows\\CurrentVersion\\Run\\";
-    public static final String STARTUP_REGISTRY_2_E = "SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run";
-    
-    public static final String STARTUP_REGISTRY_1_D = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run";
-    
-    //User = 0 -> Current. User = 1 -> Local
-    private static ArrayList <String> getStartUp(String folder, int user) {
-        Map <String, Object> appStartUp;
-        if (user == 0) appStartUp = Advapi32Util.registryGetValues(HKEY_CURRENT_USER, folder);
-        else appStartUp = Advapi32Util.registryGetValues(HKEY_LOCAL_MACHINE, folder);
-        
-        ArrayList <String> res = new ArrayList<>();
-        for (String value: appStartUp.keySet()) {
-            res.add(value);
-        }
-        return res;
-    }
-    
-    private static void addApp(String folder, int user_val, String status) {
-        ArrayList <String> App = getStartUp(folder, user_val);
-        for (String value : App) {
-            StartUp tmp = new StartUp(value, status);
-            res.add(tmp);
-        }
-    }*/
     private static boolean checkLine(String line) {
         if (line == null) {
             return false;
@@ -87,12 +52,11 @@ public class Get_StartUp_App {
                 line = reader.readLine();
                 int cnt = 1;
                 while (line != null) {
-                    if (checkLine(line) && line != null) {
+                    if (checkLine(line)) {
                         line = reader.readLine();
-                        //System.out.println(cnt);
                         cnt = 0;
-                        while (!checkLine(line) && line != null) {
-                            String tmp = "";
+                        while (!checkLine(line)) {
+                            String tmp;
                             for (int i = 0; i < 14; ++i) {
                                 if (cnt == 0) {
                                     if (i % 2 != 0) {
@@ -107,37 +71,48 @@ public class Get_StartUp_App {
                                         tmp = "";
                                     }
                                 }
-                                //System.out.println(line + "" + Integer.toString(i));
-                                //System.out.println(line);
                                 line = reader.readLine();
                                 if (cnt == 0) {
-                                    if (i == 1) {
-                                        Name = tmp;
-                                    } else if (i == 5) {
-                                        Des = tmp;
-                                    } else if (i == 7) {
-                                        Pub = tmp;
-                                    } else if (i == 11) {
-                                        Command = tmp;
+                                    switch (i) {
+                                        case 1:
+                                            Name = tmp;
+                                            break;
+                                        case 5:
+                                            Des = tmp;
+                                            break;
+                                        case 7:
+                                            Pub = tmp;
+                                            break;
+                                        case 11:
+                                            Command = tmp;
+                                            break;
+                                        default:
+                                            break;
                                     }
                                 } else {
-                                    if (i == 0) {
-                                        Name = tmp;
-                                    } else if (i == 4) {
-                                        Des = tmp;
-                                    } else if (i == 6) {
-                                        Pub = tmp;
-                                    } else if (i == 2) {
-                                        Command = tmp;
+                                    switch (i) {
+                                        case 0:
+                                            Name = tmp;
+                                            break;
+                                        case 4:
+                                            Des = tmp;
+                                            break;
+                                        case 6:
+                                            Pub = tmp;
+                                            break;
+                                        case 2:
+                                            Command = tmp;
+                                            break;
+                                        default:
+                                            break;
                                     }
                                 }
                             }
-                            //System.out.println(Name + " " + Des + " " + Pub);
                             res.add(new StartUp(Name, Des, Pub, Command));
                             if (line == null) {
                                 break;
                             }
-                            while (line.trim() == "") {
+                            while (line.trim().isEmpty()) {
                                 line = reader.readLine();
                                 cnt = 1;
                                 if (line == null) {
