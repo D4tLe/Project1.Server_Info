@@ -3,11 +3,11 @@ package INFO;
 
 public class StartUp {
     private String Name, Des, Pub, Command;
-    public StartUp(String Name, String Des, String Pub, String Command) {
+    public StartUp(String Name, String Des, String Pub) {
         this.Name = Name;
         this.Des = Des;
         this.Pub = Pub;
-        this.Command = Command;
+        //this.Command = Command;
     }
     
     public StartUp(String Name, String Command) {

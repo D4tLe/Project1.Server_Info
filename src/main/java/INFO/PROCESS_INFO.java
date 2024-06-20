@@ -55,7 +55,7 @@ public class PROCESS_INFO {
     }
     
     public void updateAttributes() {
-        osProc.updateAttributes();
+        //osProc.updateAttributes();
         this.status = osProc.getState();
         this.CPUUsage = Double.parseDouble(String.format("%.1f", 100d * osProc.getProcessCpuLoadBetweenTicks(osProc)));
         this.memoryUsage = Double.parseDouble(String.format("%.1f", (double) osProc.getResidentSetSize() / (1024 * 1024)));
