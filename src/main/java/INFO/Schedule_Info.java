@@ -78,6 +78,8 @@ public class Schedule_Info {
                             Des = list.get(4);
                             Name = list.get(0);
                         }
+                        System.out.println(Name);
+                      
                         res.add(new Schedule(Name, Des, Pub, Command, Time));
                     }
                 }

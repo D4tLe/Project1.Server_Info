@@ -148,7 +148,7 @@ public class ProcessTableController implements Initializable {
 
         filterTf.setPromptText("Filter");
 
-        filterTf.textProperty().addListener((observable, oldValue, newValue) -> {
+        /*filterTf.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(proc -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -159,7 +159,7 @@ public class ProcessTableController implements Initializable {
                 return (proc.getName().toLowerCase().contains(lowerCaseValue) || Integer.toString(proc.getPID()).contains(lowerCaseValue)
                         || proc.getPath().toLowerCase().contains(lowerCaseValue));
             });
-        });
+        });*/
 
         SortedList<PROCESS_INFO> sortedData = new SortedList<>(filteredData);
 

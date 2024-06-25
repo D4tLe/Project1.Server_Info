@@ -80,6 +80,7 @@ public class Get_StartUp_App {
                 while (!checkLine(line) && line != null) {        
                     String tmp = "";
                     for (int i = 0; i < 14; ++i) {
+                        if (line == null) break;
                         if (cnt == 0) {
                             if (i % 2 != 0) tmp = line.trim();
                             else tmp = "";
@@ -88,7 +89,7 @@ public class Get_StartUp_App {
                             if (i % 2 == 0) tmp = line.trim();
                             else tmp = "";
                         }
-                        System.out.println(line + "" + Integer.toString(i));
+                        //System.out.println(line + "" + Integer.toString(i));
                         //System.out.println(line);
                         line = reader.readLine();
                         if (cnt == 0) {
