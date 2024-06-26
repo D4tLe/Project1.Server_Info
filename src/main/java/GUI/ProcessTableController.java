@@ -1,10 +1,12 @@
 package GUI;
 
 import INFO.PROCESS_INFO;
+import com.sun.javafx.scene.control.TableColumnComparatorBase.TableColumnComparator;
 import com.sun.jna.Platform;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,16 +69,20 @@ public class ProcessTableController implements Initializable {
     private TextField filterTf;
 
     private static PROCESS_INFO selectedItems;
-    private ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
-    private ArrayList<Integer> pidList = new ArrayList<>();
+    //private ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
+    public static ArrayList<Integer> pidList = new ArrayList<>();
+    
+    
 
     public void configTable() {
 
         SystemInfo si = new SystemInfo();
         OperatingSystem os = si.getOperatingSystem();
+        ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
+        
         for (OSProcess proc : os.getProcesses()) {
             procList.add(new PROCESS_INFO(proc));
-            pidList.add(proc.getProcessID());
+            //pidList.add(proc.getProcessID());
         }
 
         Proc_Table_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -93,7 +99,7 @@ public class ProcessTableController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         configTable();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5000), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> {
             selectedItems = Table_View.getSelectionModel().getSelectedItem();
             if (selectedItems != null) {
                 System.out.println(selectedItems.getName());
@@ -101,19 +107,31 @@ public class ProcessTableController implements Initializable {
 
             SystemInfo si = new SystemInfo();
             OperatingSystem os = si.getOperatingSystem();
+            ObservableList<PROCESS_INFO> procList = FXCollections.observableArrayList(new ArrayList<>());
+            
             for (OSProcess proc : os.getProcesses()) {
-                if (!pidList.contains(proc.getProcessID())) {
+                {
                     procList.add(new PROCESS_INFO(proc));
-                    pidList.add(proc.getProcessID());
+                    //pidList.add(proc.getProcessID());
                 }
             }
+            
+            SortedList<PROCESS_INFO> sortedData = new SortedList<>(procList, def);
+            Table_View.getItems().setAll(procList);
+            /*Table_View.getItems().forEach(proc -> proc.updateAttributes());
+            Table_View.refresh();*/
 
-            Table_View.getItems().forEach(proc -> proc.updateAttributes());
-            Table_View.refresh();
-
-            if (procList.contains(selectedItems)) {
-                Table_View.getSelectionModel().select(selectedItems);
+            if (selectedItems != null) {
+            for (PROCESS_INFO proc : procList)
+                if (proc.getPID() == selectedItems.getPID()) {
+                    Table_View.getSelectionModel().select(proc);
+                    selectedItems = proc;
+                    break;
+                }
             }
+            
+            TableColumnComparator c = (TableColumnComparator) Table_View.getComparator();
+            //if (c != null) System.out.println(c.toString());
 
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -135,8 +153,8 @@ public class ProcessTableController implements Initializable {
 
                         Runtime.getRuntime().exec(killCommand);
 
-                        procList.remove(selectedItem);
-                        pidList.remove(Integer.valueOf(selectedItem.getPID()));
+                        //procList.remove(selectedItem);
+                        //pidList.remove(Integer.valueOf(selectedItem.getPID()));
                     } catch (IOException ex) {
                         Logger.getLogger(ProcessTableController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -144,7 +162,7 @@ public class ProcessTableController implements Initializable {
             }
         });
 
-        FilteredList<PROCESS_INFO> filteredData = new FilteredList<>(procList, p -> true);
+        /*FilteredList<PROCESS_INFO> filteredData = new FilteredList<>(procList, p -> true);
 
         filterTf.setPromptText("Filter");
 
@@ -159,12 +177,12 @@ public class ProcessTableController implements Initializable {
                 return (proc.getName().toLowerCase().contains(lowerCaseValue) || Integer.toString(proc.getPID()).contains(lowerCaseValue)
                         || proc.getPath().toLowerCase().contains(lowerCaseValue));
             });
-        });*/
+        });
 
         SortedList<PROCESS_INFO> sortedData = new SortedList<>(filteredData);
 
         sortedData.comparatorProperty().bind(Table_View.comparatorProperty());
 
-        Table_View.setItems(sortedData);
+        Table_View.setItems(sortedData);*/
     }
 }
