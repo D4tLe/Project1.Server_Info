@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +19,16 @@ public class App extends Application {
         Scene scene = new Scene(root);
 
         // Set the title and the scene to the stage
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double screenWidth = (double) screenSize.getWidth();
+        double screenHeight = (double) screenSize.getHeight();
+
+        System.out.println("Screen width: " + screenWidth);
+        System.out.println("Screen height: " + screenHeight);
+        
+        primaryStage.setHeight(screenHeight * 2/3);
+        primaryStage.setWidth(screenWidth * 17/23);
+        
         primaryStage.setScene(scene);
         primaryStage.show();
     }

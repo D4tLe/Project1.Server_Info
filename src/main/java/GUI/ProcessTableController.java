@@ -101,9 +101,6 @@ public class ProcessTableController implements Initializable {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> {
             selectedItems = Table_View.getSelectionModel().getSelectedItem();
-            if (selectedItems != null) {
-                System.out.println(selectedItems.getName());
-            }
 
             SystemInfo si = new SystemInfo();
             OperatingSystem os = si.getOperatingSystem();
@@ -116,8 +113,12 @@ public class ProcessTableController implements Initializable {
                 }
             }
             
-            SortedList<PROCESS_INFO> sortedData = new SortedList<>(procList, def);
-            Table_View.getItems().setAll(procList);
+            //SortedList<PROCESS_INFO> sortedData = new SortedList<>(procList, def);
+            SortedList<PROCESS_INFO> sortedData = new SortedList<>(procList);
+            sortedData.setComparator(Table_View.getComparator());
+            sortedData.comparatorProperty().bind(Table_View.comparatorProperty());
+            
+            Table_View.getItems().setAll(sortedData);
             /*Table_View.getItems().forEach(proc -> proc.updateAttributes());
             Table_View.refresh();*/
 
@@ -130,7 +131,7 @@ public class ProcessTableController implements Initializable {
                 }
             }
             
-            TableColumnComparator c = (TableColumnComparator) Table_View.getComparator();
+            //TableColumnComparator c = (TableColumnComparator) Table_View.getComparator();
             //if (c != null) System.out.println(c.toString());
 
         }));
@@ -181,7 +182,7 @@ public class ProcessTableController implements Initializable {
 
         SortedList<PROCESS_INFO> sortedData = new SortedList<>(filteredData);
 
-        sortedData.comparatorProperty().bind(Table_View.comparatorProperty());
+        sortedData.comparatorProperty().bind(c);
 
         Table_View.setItems(sortedData);*/
     }
