@@ -26,9 +26,6 @@ public class App extends Application {
         System.out.println("Screen width: " + screenWidth);
         System.out.println("Screen height: " + screenHeight);
         
-        primaryStage.setHeight(screenHeight * 2/3);
-        primaryStage.setWidth(screenWidth * 17/23);
-        
         primaryStage.setScene(scene);
         primaryStage.show();
     }
