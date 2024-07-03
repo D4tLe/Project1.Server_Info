@@ -1,16 +1,15 @@
 
 package INFO;
 
-public class StartUp {
+public class STARTUP_INFO {
     private String Name, Des, Pub, Command;
-    public StartUp(String Name, String Des, String Pub) {
+    public STARTUP_INFO(String Name, String Des, String Pub) {
         this.Name = Name;
         this.Des = Des;
         this.Pub = Pub;
-        //this.Command = Command;
     }
     
-    public StartUp(String Name, String Command) {
+    public STARTUP_INFO(String Name, String Command) {
         this.Name = Name;
         this.Command = Command;
     }

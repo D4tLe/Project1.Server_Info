@@ -1,21 +1,17 @@
 package INFO;
 
-/**
- *
- * @author leunaut
- */
-public class Users {
+public class USER_INFO {
 
     String username, CPU, Memory, Disk;
 
-    public Users(String username, String CPU, String Memory, String Disk) {
+    public USER_INFO(String username, String CPU, String Memory, String Disk) {
         this.username = username;
         this.CPU = CPU;
         this.Memory = Memory;
         this.Disk = Disk;
     }
     
-    public Users(String username, String CPU, String Memory) {
+    public USER_INFO(String username, String CPU, String Memory) {
         this.username = username;
         this.CPU = CPU;
         this.Memory = Memory;

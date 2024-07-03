@@ -2,17 +2,14 @@ package GUI;
 
 import INFO.Schedule;
 import INFO.Schedule_Info;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ScheduleTableController implements Initializable {
+public class ScheduleTableController{
 
     @FXML
     private TableColumn<Schedule, String> Sch_Name;
@@ -32,8 +29,7 @@ public class ScheduleTableController implements Initializable {
     @FXML
     private TableColumn<Schedule, String> Sch_Path;
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         Schedule_Info st = new Schedule_Info();
         ObservableList <Schedule> list = FXCollections.observableArrayList(st.getSchedule());    
         Sch_Name.setCellValueFactory(new PropertyValueFactory <>("Name"));
