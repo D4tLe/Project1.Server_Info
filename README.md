@@ -6,4 +6,22 @@
 ![Javafx](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
-This is our first project about managing server on Linux and Windows. You can manage running processes, hardware: CPU, Disk, RAM,.. The project is in developing progress so feel free to contact us through email and facebook.
+This is our first project about managing server on Linux and Windows. It's using completely Java and aims to retrieve system information, such as OS version, processes, memory and CPU usage, disks. The project is in developing progress so feel free to contact us through email or facebook.
+
+# Supported Platforms 
+-  Windows
+-  Linux
+
+# Requirements
+-  Java IDE ([NetBeans](https://netbeans.apache.org/front/main/index.html))
+-  [Scene Builder](https://gluonhq.com/products/scene-builder/)
+-  [Maven OpenFx](https://mvnrepository.com/artifact/org.openjfx)
+-  [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) (Only for Windows)
+
+# Supported Features
+-  Managing Running Processes/Thread/Services
+-  Showing CPU/RAM/Disk Usages
+-  Showing Network (Wifi/Ethernet) Usages
+-  Showing StartUp app when starting system
+-  Information about User's usages
+-  Viewing schedule processes/apps
