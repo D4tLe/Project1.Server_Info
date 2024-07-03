@@ -3,7 +3,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="Sch_Table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="686.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Schedule_Controller">
+<TableView fx:id="Sch_Table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="686.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ScheduleTableController">
   <columns>
     <TableColumn fx:id="Sch_Name" prefWidth="150.0" text="Task Name" />
     <TableColumn fx:id="Sch_Des" prefWidth="154.0" text="Description" />

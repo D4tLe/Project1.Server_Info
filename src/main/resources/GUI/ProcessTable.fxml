@@ -33,7 +33,7 @@
             <TableColumn fx:id="Proc_Table_PID" prefWidth="350.0" text="PID" />
             <TableColumn fx:id="Proc_Table_Status" prefWidth="350.0" text="Status" />
             <TableColumn fx:id="Proc_Table_CPU" prefWidth="350.0" text="\%CPU" />
-            <TableColumn fx:id="Proc_Table_Memory" prefWidth="350.0" sortType="DESCENDING" text="Mem (MB)" />
+            <TableColumn fx:id="Proc_Table_Memory" prefWidth="350.0" sortType="DESCENDING" text="Memory (MB)" />
             <TableColumn fx:id="Proc_Table_Architect" prefWidth="350.0" text="Architect" />
             <TableColumn fx:id="Proc_Table_Path" prefWidth="350.0" text="Path" />
          </columns>

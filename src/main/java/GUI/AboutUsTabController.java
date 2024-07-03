@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 
-public class AboutUsController {
+public class AboutUsTabController {
 
     @FXML
     private Hyperlink hyperLink;

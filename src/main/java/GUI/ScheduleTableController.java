@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class Schedule_Controller implements Initializable {
+public class ScheduleTableController implements Initializable {
 
     @FXML
     private TableColumn<Schedule, String> Sch_Name;

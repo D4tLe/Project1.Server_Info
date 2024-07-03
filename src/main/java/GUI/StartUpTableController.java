@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class StartUpController implements Initializable {
+public class StartUpTableController implements Initializable {
 
     @FXML
     private TableColumn<StartUp, String> StartUp_Des;

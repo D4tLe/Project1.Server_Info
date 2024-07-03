@@ -14,7 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 
-public class User_Controller implements Initializable {
+public class UsersTableController implements Initializable {
     
     private Users_Info us;
 
