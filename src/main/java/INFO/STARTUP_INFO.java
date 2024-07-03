@@ -3,10 +3,11 @@ package INFO;
 
 public class STARTUP_INFO {
     private String Name, Des, Pub, Command;
-    public STARTUP_INFO(String Name, String Des, String Pub) {
+    public STARTUP_INFO(String Name, String Des, String Pub, String Command) {
         this.Name = Name;
         this.Des = Des;
         this.Pub = Pub;
+        this.Command = Command;
     }
     
     public STARTUP_INFO(String Name, String Command) {

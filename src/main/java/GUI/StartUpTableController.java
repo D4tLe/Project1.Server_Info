@@ -88,7 +88,7 @@ public class StartUpTableController {
 
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(process.getInputStream()));
-                String line, Name = "", Pub = "", Des = "";
+                String line, Name = "", Pub = "", Des = "", Cmd = "";
                 line = reader.readLine();
                 int cnt = 1;
                 while (line != null) {
@@ -123,6 +123,9 @@ public class StartUpTableController {
                                     } else if (i == 7) {
                                         Pub = tmp;
                                     }
+                                    else if (i == 11) {
+                                        Cmd = tmp;
+                                    }
                                 } else {
                                     if (i == 0) {
                                         Name = tmp;
@@ -131,9 +134,12 @@ public class StartUpTableController {
                                     } else if (i == 6) {
                                         Pub = tmp;
                                     }
+                                    else if (i == 10) {
+                                        Cmd = tmp;
+                                    }
                                 }
                             }
-                            res.add(new STARTUP_INFO(Name, Des, Pub));
+                            res.add(new STARTUP_INFO(Name, Des, Pub, Cmd));
                             if (line == null) {
                                 break;
                             }

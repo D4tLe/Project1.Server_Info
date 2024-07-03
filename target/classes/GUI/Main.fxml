@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -27,21 +27,24 @@
             
                 <Tab fx:id="startupAppTab" closable="false" text="Startup Apps">
                     <content>
-                        <fx:include source="StartUp.fxml" />
+                        <fx:include source="StartUpTable.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="servicesTab" closable="false" text="Services">
-                    <fx:include source="Service.fxml" />
+                    <fx:include source="ServiceTable.fxml" />
                 </Tab>
             <Tab text="Users">
               <content>
-                <fx:include source="Users.fxml" />
+                <fx:include source="UsersTable.fxml" />
               </content>
             </Tab>
             <Tab text="Schedule">
                 <content>
-                    <fx:include source="ScheduleTab.fxml" />
+                    <fx:include source="ScheduleTable.fxml" />
                 </content>
+            </Tab>
+            <Tab text="About Us">
+                <content><fx:include source="AboutUs.fxml" /></content>
             </Tab>
             </tabs>
         </TabPane>
