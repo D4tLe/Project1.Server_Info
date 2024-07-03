@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.StackPane?>
-
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PerformanceTabController">
-    <TabPane fx:id="tabPane" prefHeight="706.0" prefWidth="1081.0" rotateGraphic="true" side="LEFT" stylesheets="@../style/tabpane.css" tabMaxHeight="200" tabMinHeight="200" StackPane.alignment="CENTER" />
-</StackPane>
