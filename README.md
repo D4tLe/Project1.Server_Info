@@ -13,16 +13,18 @@ This is our first project about managing server on Linux and Windows. It's using
 -  Linux
 
 # Demo
-![2024-07-0323-21-14-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/90278bba-0f2b-4365-b2e9-bff7ffb1c373)
 ## Process Tab
 ![ProcessBar-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/b0b512d4-41bb-468e-90de-a103cf4332f3)
 ## Performance Tab
 ![PerformanceTab-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/6ad42dd4-e39e-4d80-989c-35e95165379f)
 ## StartUp Tab
+![StartUp-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/063debfd-f7d2-4a88-9780-1eac2e0a71a4)
 ## Services Tab
+![Services-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/b9d51500-260f-4186-b9c7-94abd889b633)
 ## User Tab
+![UserTab-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/74a8200d-c540-44ae-9898-ed81b93e8844)
 ## Schedule Tab
-
+![ScheduleTab-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/08c38d53-60f2-4e8a-96cf-b35c96a8e851)
 
 
 # Requirements
