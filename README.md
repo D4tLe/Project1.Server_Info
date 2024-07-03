@@ -14,6 +14,15 @@ This is our first project about managing server on Linux and Windows. It's using
 
 # Demo
 ![2024-07-0323-21-14-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/90278bba-0f2b-4365-b2e9-bff7ffb1c373)
+## Process Tab
+![ProcessBar-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/b0b512d4-41bb-468e-90de-a103cf4332f3)
+## Performance Tab
+![PerformanceTab-ezgif com-video-to-gif-converter](https://github.com/D4tLe/Project1.Server_Info/assets/57163498/6ad42dd4-e39e-4d80-989c-35e95165379f)
+## StartUp Tab
+## Services Tab
+## User Tab
+## Schedule Tab
+
 
 
 # Requirements
