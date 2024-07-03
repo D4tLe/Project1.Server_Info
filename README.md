@@ -18,10 +18,20 @@ This is our first project about managing server on Linux and Windows. It's using
 -  [Maven OpenFx](https://mvnrepository.com/artifact/org.openjfx)
 -  [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) (Only for Windows)
 
-# Supported Features
+# Features
 -  Managing Running Processes/Thread/Services
 -  Showing CPU/RAM/Disk Usages
 -  Showing Network (Wifi/Ethernet) Usages
 -  Showing StartUp app when starting system
 -  Information about User's usages
 -  Viewing schedule processes/apps
+
+# About us
+If there's any problems, feel free to contact us: <br>
+***Le Anh Tuan*** - 20225559 <br>
+Email: tuan.la225559@sis.hust.edu.vn <br>
+Facebook: [leunaut](https://www.facebook.com/leunaut/)<br>
+
+***Le Tien Dat*** - 20225543 <br>
+Email: dat.lt225543@sis.hust.edu.vn <br>
+Facebook: [datle](https://www.facebook.com/profile.php?id=100012222158979) <br>
