@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="StartUp_Table_View" prefHeight="548.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartUpController">
+   <columns>
+      <TableColumn fx:id="StartUp_Name" prefWidth="313.0" text="Name" />
+      <TableColumn fx:id="StartUp_Des" prefWidth="264.0" text="Description" />
+      <TableColumn fx:id="StartUp_Pub" prefWidth="160.0" text="Publisher" />
+      <TableColumn fx:id="StartUp_Cmd" prefWidth="293.0" text="Command" />
+   </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
+</TableView>
