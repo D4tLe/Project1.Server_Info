@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="Service_Table_View" prefHeight="590.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ServiceTableController">
+   <columns>
+      <TableColumn fx:id="Service_Name" prefWidth="353.0" text="Name" />
+      <TableColumn fx:id="Service_PID" minWidth="8.0" prefWidth="192.0" text="PID" />
+      <TableColumn fx:id="Service_Status" prefWidth="350.0" text="Status" />
+   </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
+</TableView>
