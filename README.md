@@ -29,8 +29,8 @@ This is our first project about managing server on Linux and Windows. It's using
 
 
 # Requirements
--  [Java]([https://netbeans.apache.org/front/main/index.html](https://openjfx.io/))
--  [JavaFX]([https://gluonhq.com/products/scene-builder/](https://openjfx.io/))
+-  [Java](https://openjfx.io/)
+-  [JavaFX](https://openjfx.io/)
 -  [Maven OpenFx](https://mvnrepository.com/artifact/org.openjfx)
 -  [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) (Only for Windows)
 
